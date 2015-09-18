@@ -3,12 +3,12 @@ enumjs
 
 This is an attempt at realizing type-safe enums in JavaScript. I'm most familiar with the way enums work in Java, and so I modeled this library after that. JavaScript doesn't have true enums. Most workarounds to this problem involve using a map where the keys represent the enum constants, and the values are integers or string-representations of the enum constants. This is a convenient solution, but the main problem is that you don't really get any type-safety since the values are just regular JavaScript types. This means that you can't even do `instanceof` checks, and you have to resort to checking the value against all defined-values to see if it is valid.
 
-I figured there must be a better way to realize enums in JavaScript while addressing these shortcomings, and this is my attempt to do that. As far as I can tell, this works like one would expect, but I'm sure there are things I haven't considered. So here's what you get with enumjs:
+I figured there must be a better way to realize enums in JavaScript while addressing these shortcomings, and this is my attempt to do that. As far as I can tell, this works like one would expect, but I'm sure there are things I haven't considered. So here's what you get with **enumjs**:
 
  - The ability to define your own enum and its constants.
  - Your custom enum is its own type, and all its constants are instances of the enum itself. This means that you *can* do `instanceof` checks.
  - The custom enum has a `values` and a `fromName`<sup>\*</sup> method. The former returns an array of all constants defined on the enum, and the latter will attempt to return an enum consant with the same name as the string that is passed in. If one does not exist, an exception is thrown.
- - Each enum constant has a `name()` and an `ordinal()` method. The `name()` method returns a string representing the name of the constant (as defined), and `ordinal()` returns the position of the enum (as defined).
+ - Each enum constant has a `name()` and an `ordinal()` method. The `name()` method returns a string representing the name of the constant (as defined), and `ordinal()` returns the position of the constant (as defined).
  - Once defined, the enum type and its constants are immutable.
 
 <sup>\*</sup>In Java the method is actually called `valueOf` and that's what I named it here originally as well. However, JavaScript has its own `valueOf` method on objects that does something else entirely, and I didn't want to override that behavior.
