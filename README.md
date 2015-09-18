@@ -16,7 +16,7 @@ I figured there must be a better way to realize enums in JavaScript while addres
 This works on the browser and in Nashorn (the two places I tried it out). It might work on Node as well, but I haven't really tried it out. To use it, just include `enum.js`. There is a single object called `Enum`, with a method called `define`. The signature is `Enum.define(<string>, <array> | <object>)`. Some examples:
 
 ```javascript
-Enum.define("Days", ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]);
+var Days = Enum.define("Days", ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]);
 
 Days.Monday instanceof Days; // true
 
@@ -41,7 +41,7 @@ Days.Friday.fromName("Saturday").name() // "Saturday"
 You can also attach behavior to each constant, just like in Java:
 
 ```javascript
-Enum.define("Days", {
+var Days = Enum.define("Days", {
     Monday: {
         say: function () {
             return this.name() + "s are bad!";
@@ -86,7 +86,7 @@ Days.Friday.say(); // "Friday, Friday, Gettin' down on Friday!"
 Here's another example that's based on the [Planet example](https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html) from the Java documentation on enums:
 
 ```javascript
-Enum.define("Planet", {
+var Planet = Enum.define("Planet", {
     MERCURY: {
         mass: 3.303e+23,
         radius: 2.4397e6,

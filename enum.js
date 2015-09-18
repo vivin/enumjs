@@ -6,7 +6,7 @@
  * Copyright (C) 2015
  */
 
-var Enum = (function (global) {
+var Enum = (function () {
     /**
      * Function to define an enum
      * @param typeName - The name of the enum.
@@ -174,12 +174,11 @@ var Enum = (function (global) {
         Object.freeze(__enum.prototype);
         Object.freeze(__enum);
 
-        /** Add the enum to the global scope **/
-        global[typeName] = __enum;
+        /** Return the enume **/
+        return __enum;
     }
 
     return {
         define: define
     }
-
-})(typeof window !== "undefined" ? window : this);
+})();
