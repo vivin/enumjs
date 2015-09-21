@@ -1,3 +1,8 @@
+<p align="right">
+   <img src="https://travis-ci.org/vivin/enumjs.png?branch=master" alt="enumjs Build Status" />&nbsp;
+   <a href='https://coveralls.io/r/vivin/enumjs?branch=master'><img src='https://coveralls.io/repos/vivin/enumjs/badge.png?branch=master' alt='enumjs Coverage Status' /></a>
+</p>
+
 enumjs
 ======
 
