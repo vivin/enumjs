@@ -38,43 +38,45 @@ Days.fromName("Wednesday").name() // "Wednesday"
 Days.Friday.fromName("Saturday").name() // "Saturday"
 ```
 
-You can also attach behavior to each constant, just like in Java:
+You can also attach behavior to each constant, just like in Java. To do that, you need to pass in a definition object that looks like this:
 
 ```javascript
 var Days = Enum.define("Days", {
-    Monday: {
-        say: function () {
-            return this.name() + "s are bad!";
-        }
-    },
-    Tuesday: {
-        say: function () {
-            return this.name() + "s are ok...";
-        }
-    },
-    Wednesday: {
-        say: function () {
-            return this.name() + " is the middle of the week...";
-        }
-    },
-    Thursday: {
-        say: function () {
-            return this.name() + "! We're getting closer to the weekend!";
-        }
-    },
-    Friday: {
-        say: function () {
-            return this.name() + ", " + this.name() + ", Gettin' down on " + this.name() + "!";
-        }
-    },
-    Saturday: {
-        say: function () {
-            return this.name() + "! Aw yisss time for cartoons!";
-        }
-    },
-    Sunday: {
-        say: function () {
-            return this.name() + "! It's still the weekend!";
+    constants: {
+        Monday: {
+            say: function () {
+                return this.name() + "s are bad!";
+            }
+        },
+        Tuesday: {
+            say: function () {
+                return this.name() + "s are ok...";
+            }
+        },
+        Wednesday: {
+            say: function () {
+                return this.name() + " is the middle of the week...";
+            }
+        },
+        Thursday: {
+            say: function () {
+                return this.name() + "! We're getting closer to the weekend!";
+            }
+        },
+        Friday: {
+            say: function () {
+                return this.name() + ", " + this.name() + ", Gettin' down on " + this.name() + "!";
+            }
+        },
+        Saturday: {
+            say: function () {
+                return this.name() + "! Aw yisss time for cartoons!";
+            }
+        },
+        Sunday: {
+            say: function () {
+                return this.name() + "! It's still the weekend!";
+            }
         }
     }
 });
@@ -83,69 +85,55 @@ Days.Monday.say(); // "Mondays are bad!"
 Days.Friday.say(); // "Friday, Friday, Gettin' down on Friday!"
 ```
 
-Here's another example that's based on the [Planet example](https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html) from the Java documentation on enums:
+Sometimes you may want to have behavior that is shared among all instances. But doing that in the above manner is tedious and repetitive. Instead, you can pass in the optional attribute `methods`. All values defined in this object must be functions, and these functions will be attached to every constant of the enum. To demonstrate this,  here's an example that's based on the [Planet example](https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html) from the Java documentation on enums:
+
 
 ```javascript
 var Planet = Enum.define("Planet", {
-    MERCURY: {
-        mass: 3.303e+23,
-        radius: 2.4397e6,
-        surfaceGravity: surfaceGravity,
-        surfaceWeight: surfaceWeight
+    constants: {
+        MERCURY: {
+            mass: 3.303e+23,
+            radius: 2.4397e6
+        },
+        VENUS: {
+            mass: 4.869e+24,
+            radius: 6.0518e6
+        },
+        EARTH: {
+            mass: 5.976e+24,
+            radius: 6.37814e6
+        },
+        MARS: {
+            mass: 6.421e+23,
+            radius: 3.3972e6
+        },
+        JUPITER: {
+            mass: 1.9e+27,
+            radius: 7.1492e7
+        },
+        SATURN: {
+            mass: 5.688e+26,
+            radius: 6.0268e7
+        },
+        URANUS: {
+            mass: 8.686e+25,
+            radius: 2.5559e7
+        },
+        NEPTUNE: {
+            mass: 1.024e+26,
+            radius: 2.4746e7
+        }   
     },
-    VENUS: {
-        mass: 4.869e+24,
-        radius: 6.0518e6,
-        surfaceGravity: surfaceGravity,
-        surfaceWeight: surfaceWeight
-    },
-    EARTH: {
-        mass: 5.976e+24,
-        radius: 6.37814e6,
-        surfaceGravity: surfaceGravity,
-        surfaceWeight: surfaceWeight
-    },
-    MARS: {
-        mass: 6.421e+23,
-        radius: 3.3972e6,
-        surfaceGravity: surfaceGravity,
-        surfaceWeight: surfaceWeight
-    },
-    JUPITER: {
-        mass: 1.9e+27,
-        radius: 7.1492e7,
-        surfaceGravity: surfaceGravity,
-        surfaceWeight: surfaceWeight
-    },
-    SATURN: {
-        mass: 5.688e+26,
-        radius: 6.0268e7,
-        surfaceGravity: surfaceGravity,
-        surfaceWeight: surfaceWeight
-    },
-    URANUS: {
-        mass: 8.686e+25,
-        radius: 2.5559e7,
-        surfaceGravity: surfaceGravity,
-        surfaceWeight: surfaceWeight
-    },
-    NEPTUNE: {
-        mass: 1.024e+26,
-        radius: 2.4746e7,
-        surfaceGravity: surfaceGravity,
-        surfaceWeight: surfaceWeight
+    methods: {
+        surfaceGravity: function() {
+            var G = 6.67300E-11;
+            return (G * this.mass) / Math.pow(this.radius, 2);
+        },
+        surfaceWeight: function(mass) {
+            return mass * this.surfaceGravity();
+        }
     }
 });
-
-var G = 6.67300E-11;
-
-function surfaceGravity() {
-    return (G * this.mass) / Math.pow(this.radius, 2);
-}
-
-function surfaceWeight(mass) {
-    return mass * this.surfaceGravity();
-}
 
 var mass = 175 / Planet.EARTH.surfaceGravity();
 Planet.values().forEach(function(planet) {

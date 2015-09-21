@@ -1,0 +1,4 @@
+.idea
+dist/report
+dist/test-reports
+node_modules
