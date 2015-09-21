@@ -1,7 +1,7 @@
 /**
  * @preserve
  * enum.js - Type-safe enums in JavaScript. Modeled after Java enums.
- * Version 1.0.0
+ * Version 1.0.1
  * Written by Vivin Paliath (http://vivin.net)
  * License: BSD License
  * Copyright (C) 2015

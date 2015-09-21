@@ -20,7 +20,7 @@ I figured there must be a better way to realize enums in JavaScript while addres
 
 This works on the browser, in Nashorn, and on Node.  The library exposes a single object (called `Enum` if you're on the browser or have loaded the file in Nashorn) with a method called `define`. The signature is `Enum.define(<string>, <array> | <object>)`.
 
-The current version is 1.0.0 and is available [here](https://github.com/vivin/enumjs/releases/tag/v1.0.0). The library is also available as a node package called [**node-enumjs**](https://www.npmjs.com/package/node-enumjs). To install, just run `npm install node-enumjs`. Then you can use it like so:
+The current version is 1.0.1 and is available [here](https://github.com/vivin/enumjs/releases/tag/v1.0.1). The library is also available as a node package called [**node-enumjs**](https://www.npmjs.com/package/node-enumjs). To install, just run `npm install node-enumjs`. Then you can use it like so:
 
 ```javascript
 var Enum = require('node-enumjs');
