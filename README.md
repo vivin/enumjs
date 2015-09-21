@@ -18,7 +18,15 @@ I figured there must be a better way to realize enums in JavaScript while addres
 
 <sup>\*</sup>In Java the method is actually called `valueOf` and that's what I named it here originally as well. However, JavaScript has its own `valueOf` method on objects that does something else entirely, and I didn't want to override that behavior.
 
-This works on the browser and in Nashorn (the two places I tried it out). It might work on Node as well, but I haven't really tried it out. To use it, just include `enum.js`. There is a single object called `Enum`, with a method called `define`. The signature is `Enum.define(<string>, <array> | <object>)`. Some examples:
+This works on the browser, in Nashorn, and on Node.  The library exposes a single object (called `Enum` if you're on the browser or have loaded the file in Nashorn) with a method called `define`. The signature is `Enum.define(<string>, <array> | <object>)`.
+
+The current version is 1.0.0 and is available [here](https://github.com/vivin/enumjs/releases/tag/v1.0.0). The library is also available as a node package called [**node-enumjs**](https://www.npmjs.com/package/node-enumjs). To install, just run `npm install node-enumjs`. Then you can use it like so:
+
+```javascript
+var Enum = require('node-enumjs');
+```
+Examples
+--------
 
 ```javascript
 var Days = Enum.define("Days", ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]);
@@ -91,7 +99,6 @@ Days.Friday.say(); // "Friday, Friday, Gettin' down on Friday!"
 ```
 
 Sometimes you may want to have similar behavior that is shared among all constants. But doing that in the above manner is tedious and repetitive. Instead, you can pass in the optional attribute `methods`. All values defined in this object must be functions, and these functions will be attached to every constant of the enum. To demonstrate this,  here's an example that's based on the [Planet example](https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html) from the Java documentation on enums:
-
 
 ```javascript
 var Planet = Enum.define("Planet", {
