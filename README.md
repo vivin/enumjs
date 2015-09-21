@@ -90,7 +90,7 @@ Days.Monday.say(); // "Mondays are bad!"
 Days.Friday.say(); // "Friday, Friday, Gettin' down on Friday!"
 ```
 
-Sometimes you may want to have behavior that is shared among all instances. But doing that in the above manner is tedious and repetitive. Instead, you can pass in the optional attribute `methods`. All values defined in this object must be functions, and these functions will be attached to every constant of the enum. To demonstrate this,  here's an example that's based on the [Planet example](https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html) from the Java documentation on enums:
+Sometimes you may want to have similar behavior that is shared among all constants. But doing that in the above manner is tedious and repetitive. Instead, you can pass in the optional attribute `methods`. All values defined in this object must be functions, and these functions will be attached to every constant of the enum. To demonstrate this,  here's an example that's based on the [Planet example](https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html) from the Java documentation on enums:
 
 
 ```javascript
