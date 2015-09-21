@@ -35,7 +35,7 @@ module.exports = function (grunt) {
             options: {
                 '--web-security': 'no',
                 coverage: {
-                    src: ['dist/enumjs.js'],
+                    src: ['dist/enum.js'],
                     instrumentedFiles: 'temp/',
                     htmlReport: 'dist/report/coverage',
                     lcovReport: 'dist/report/lcov',
