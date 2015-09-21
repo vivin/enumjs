@@ -2,7 +2,7 @@
   "name": "node-enumjs",
   "version": "1.0.0",
   "description": "An implementation of type-safe enums in JavaScript (modeled after Java enums)",
-  "main": "Gruntfile.js",
+  "main": "dist/enum.min.js",
   "scripts": {
     "test": "grunt travis"
   },
