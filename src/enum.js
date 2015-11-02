@@ -162,6 +162,12 @@
             }
         });
 
+        Object.defineProperty(_enum.prototype, "toJSON", {
+            value: function () {
+                return this._name;
+            }
+        });
+
         /**
          * If definition was an array, we can the element values directly. Otherwise, we will have to use the keys
          * from the definition.constants object. At this time we can also attach any methods (if provided) to the

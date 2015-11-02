@@ -255,3 +255,8 @@ test('Test define defines enums and constants properly, and all behavior is cons
     ok(Numbers.TWO.toBinary() === "0010", "TWO.toBinary() must be 0010.");
     ok(Numbers.THREE.toBinary() === "0011", "THREE.toBinary() must be 0011.");
 });
+
+test('Test JSON.stringify on an enum constant returns a string representation of the constant.', function () {
+    var Test = Enum.define("Test", ["One"]);
+    ok(JSON.stringify(Test.One) === "\"One\"", "JSON.stringify(Test.One) should return \"One\".");
+});
